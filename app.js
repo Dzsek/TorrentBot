@@ -14,5 +14,5 @@ function loop()
     });
 }
 
-setInterval(loop, 1000);
+setInterval(loop, 5000);
 

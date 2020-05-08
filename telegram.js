@@ -16,7 +16,8 @@ export default class Telegram
     }
 
     processCommands(){
-        const request = `${this.url}/getupdates`;
+		const lasti = this.db.get('lastid');
+        const request = `${this.url}/getupdates?offset=${lasti+1}`;
         axios.get(request)
             .then(resp=>{
                 let lastupd = this.db.get('lastupdate');
@@ -27,6 +28,7 @@ export default class Telegram
                     {
                         this.processMsg(up.message);
                         this.db.update({lastupdate: up.message.date});
+						this.db.update({lastid: up.update_id});
                         this.db.save();
                     }
                 }

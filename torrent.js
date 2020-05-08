@@ -35,9 +35,16 @@ export default class Torrent{
             
             const body = `urls=${urls}`;
             return axios.post(`${this.url}/command/download`, body, options).then((resp)=>{
-                this.db.update({toadd: []});
-                this.db.save();
-                console.log("Added ", add.length, " torrents");
+                if(resp.status == 200)
+				{
+					this.db.update({toadd: []});
+					this.db.save();
+					console.log("Added ", add.length, " torrents");
+				}
+				else
+				{
+					return Promise.resolve();
+				}
             });
         }
         else
@@ -59,9 +66,16 @@ export default class Torrent{
             
             const body = `hashes=${urls}`;
             return axios.post(`${this.url}/command/deletePerm`, body, options).then((resp)=>{
-                this.db.update({todelete: []});
-                this.db.save();
-                console.log("Deleted ", del.length, " torrents");
+				if(resp.status == 200)
+				{
+					this.db.update({todelete: []});
+					this.db.save();
+					console.log("Deleted ", del.length, " torrents");
+				}
+				else
+				{
+					return Promise.resolve();
+				}
             });
         }
         else
