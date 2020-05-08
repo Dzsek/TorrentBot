@@ -5,10 +5,11 @@ export default class Database
     file = './data.json';
 
     data = {
-        lastupdate:1588941212,
+        lastupdate:1588943802,
         toadd: [],
         torrents: [],
-        todelete: []
+        todelete: [],
+		lastid : 0
     };
 
     constructor()
