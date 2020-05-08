@@ -9,7 +9,7 @@ export default class Database
         toadd: [],
         torrents: [],
         todelete: [],
-		lastid : 0
+		lastid : 979701660
     };
 
     constructor()

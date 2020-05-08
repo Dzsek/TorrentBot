@@ -13,9 +13,11 @@ function loop()
 {
     qbit.sync()
     .then(()=>{
-        tele.processCommands();
+        tele.processCommands().then(()=>{
+            setTimeout(loop, 2000);
+        })
     });
 }
 
-setInterval(loop, 5000);
+setTimeout(loop, 2000);
 

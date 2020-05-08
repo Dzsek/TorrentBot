@@ -18,7 +18,7 @@ export default class Telegram
     processCommands(){
 		const lasti = this.db.get('lastid');
         const request = `${this.url}/getupdates?offset=${lasti+1}`;
-        axios.get(request)
+        return axios.get(request)
             .then(resp=>{
                 let lastupd = this.db.get('lastupdate');
 
